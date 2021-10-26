@@ -150,7 +150,7 @@ exports.postSignup = (req, res, next) => {
       res.redirect('/login');
        return transporter.sendMail({
         to: email,
-        from: 'jeremiahorcutt@byui.edu',
+        from: '',
         subject: 'Signup successful!',
         html: '<h1>You successfully signed up!</h1>'
       });
@@ -204,11 +204,11 @@ exports.postReset = (req, res, next) => {
       res.redirect('/');
       transporter.sendMail({
         to: req.body.email,
-        from: 'jeremiahorcutt@byui.edu',
+        from: '',
         subject: 'Password Reset',
         html: `
           <p>You requested a password reset.</p>
-          <p>Click this <a href="https://orcuttwebbackend2bookstore.herokuapp.com/reset/${token}">link</a> to set a new password.</p>
+          <p>Click this <a href="">link</a> to set a new password.</p>
         `
       });
     })
