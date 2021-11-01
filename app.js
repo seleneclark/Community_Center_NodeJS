@@ -13,7 +13,7 @@ const User = require('./models/user');
 
 const PORT = process.env.PORT || 5000;
 
-// const MONGODB_URI = process.env.MONGODB_URI;
+const MONGODB_URI = process.env.MONGODB_URL || "mongodb+srv://user:watchingtv123@cluster0.djmy0.mongodb.net/cluster0?retryWrites=true&w=majority";
 
 // console.log(process.env);
 const app = express();
@@ -30,9 +30,9 @@ app.set('view engine', 'ejs');
 app.set('views', 'views');
 
 //start route connections
-// const adminRoutes = require('./routes/admin');
-// const shopRoutes = require('./routes/shop');
-// const authRoutes = require('./routes/auth');
+const adminRoutes = require('./routes/admin');
+const shopRoutes = require('./routes/shop');
+const authRoutes = require('./routes/auth');
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -74,15 +74,15 @@ app.use((req, res, next) => {
     });
 });
 
-// app.use('/admin', adminRoutes);
-// app.use(shopRoutes);
-// app.use(authRoutes);
+app.use('/admin', adminRoutes);
+app.use(shopRoutes);
+app.use(authRoutes);
 
-//heroku setup
-// const corsOptions = {
-//     origin: "",
-//     optionsSuccessStatus: 200
-// };
+// heroku setup
+const corsOptions = {
+    origin: "",
+    optionsSuccessStatus: 200
+};
 
 //error pages handling
 app.get('/500', errorController.get500);
