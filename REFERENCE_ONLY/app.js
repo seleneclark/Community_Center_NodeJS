@@ -14,6 +14,7 @@ const User = require('./models/user');
 const PORT = process.env.PORT || 5000;
 
 const MONGODB_URI = process.env.MONGODB_URI;
+const HEROKU_REPO = process.env.HEROKU_REPO;
 
 // console.log(process.env);
 const app = express();
@@ -81,7 +82,7 @@ app.use(authRoutes);
 
 //heroku setup
 const corsOptions = {
-    origin: "https://fathomless-coast-59274.herokuapp.com/",
+    origin: HEROKU_REPO,
     optionsSuccessStatus: 200
 };
 
