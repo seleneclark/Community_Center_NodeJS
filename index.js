@@ -25,8 +25,8 @@ app.set('view engine', 'ejs');
 app.set('views', 'views');
 
 const adminRoutes = require('../admin');
-const shopRoutes = require('./Jeremiah Repo/routes/shop');
-const authRoutes = require('./Jeremiah Repo/routes/auth');
+const shopRoutes = require('./routes/shop');
+const authRoutes = require('./routes/auth');
 const { runInNewContext } = require('vm');
 
 app.use(express.urlencoded({ extended: false }));
