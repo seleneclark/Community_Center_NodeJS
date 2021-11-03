@@ -13,7 +13,7 @@ const User = require('./models/user');
 
 const PORT = process.env.PORT || 5000;
 
-const MONGODB_URI = process.env.MONGODB_URI;
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb+srv://user:watchingtv123@cluster0.djmy0.mongodb.net/cluster0?retryWrites=true&w=majority";
 const HEROKU_REPO = process.env.HEROKU_REPO;
 
 // console.log(process.env);
