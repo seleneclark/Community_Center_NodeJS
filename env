@@ -1,0 +1,5 @@
+//change the a .env file and add your database key AND heroku account info within the quotes
+
+MONGO_URI = ""
+
+HEROKU_REPO = ""

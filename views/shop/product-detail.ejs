@@ -1,0 +1,22 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/product.css">
+</head>
+
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <main>
+        <div class="grid ">
+            <div class="card card__product-detail centered">
+            <h1><%= product.title %></h1>
+            <hr>
+            <div class="card__image card__image-box centered">
+                <img src="<%= product.imageUrl %>" alt="<%= product.title %>">
+            </div>
+            <h2><%= product.price %></h2>
+            <p class="product__detail-description centered"><%= product.description %></p>
+            <p>Author: <%= product.author %></p>
+            <%- include('../includes/add-to-cart.ejs') %>
+            </div>
+        </div>
+    </main>
+    <%- include('../includes/end.ejs') %>

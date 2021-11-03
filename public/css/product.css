@@ -1,0 +1,38 @@
+.product-form {
+  width: 20rem;
+  max-width: 90%;
+  margin: auto;
+  display: block;
+}
+
+.product-item {
+  width: 20rem;
+  max-width: 100%;
+  margin: 1rem;
+}
+
+.product__title {
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.product__price {
+  text-align: center;
+  color: #4d4d4d;
+  margin-bottom: 0.5rem;
+}
+
+.product__description {
+  text-align: center;
+}
+
+.product__image {
+  max-height: 30vh;
+  padding: 2rem;
+  width: auto;
+}
+
+.product__detail-description {
+  text-align: center;
+  padding: 2rem;
+}
