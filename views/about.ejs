@@ -1,0 +1,101 @@
+<%- include('includes/head.ejs') %>
+</head>
+
+<body>
+    <%- include('includes/navigation.ejs') %>
+    <h1>About Us</h1>
+   <section class="section aboutUsSec">
+       <div class=" heading aboutHead">
+           <h2>Welcome To The Eagle Community</h2>
+           <div class="about">
+               <p>We are glad you are apart of our community. Here in Eagle,
+                   we pride ourselves on striving to be a fun and interactive 
+                   community that welcomes all. We enjoy getting our community 
+                   together as much as possible, as we beleive a friendly community 
+                   creates the ideal setting for the youth here. Here on our community 
+                   page, you will find a variety of activities for a variety of ages.
+                   We have toddler time to senior date nights weekly, and everything in 
+                   between. Join us during the summer months for movies in the park on the 
+                   third Saturday of every month, or in the winter for ice skating! We hope to 
+                   see you soon!
+               </p>
+           </div>
+       </div>
+   </section>
+   <section class="section events">
+       <div class="heading eventsHead">
+           <h2>Coming This Month</h2>
+       </div>
+       <div class="date">
+           Dec 15
+       </div>
+       <div class="description">
+           <h3 class="descHead">
+               Ice Skating In The Gazebo
+           </h3>
+           <p>Come one come all! This activity is meant for all ages. This is 
+               a free community event, all we ask is that you sign up here <!-- <a href> Insert add to cart here </a> -->
+           </p>
+       </div>
+       <div class="description">
+        <h3 class="descHead">
+            Pottery 
+        </h3>
+        <p>This is a limited time event, taught by one of our very own
+            community members. This event will be hosted for those in our 
+            community ages 35+. To learn more information, visit our activities
+            page! <!-- <a href> Insert add to cart here </a> -->
+        </p>
+        <div class="description">
+            <h3 class="descHead">
+               Family game night
+            </h3>
+            <p>As the holidays draw closer, we have decided to host our very first innaugural
+                family game night! Like Ice Skating In The Gazebo, this is an opportunity for 
+                the whole family to get together and to join us in a night of games. Visit our 
+                activities page for more information.  <!-- <a href> Insert add to cart here </a> -->
+            </p>
+        </div>
+    </div>
+   </section>
+   <section class="section contactUs">
+       <div class="heading contactHead">
+           <h3>Need To Get In Contact?</h3>
+        </div>
+           <div class="about">
+               <p>Have any questions, comments, or concerns? We're all ears! 
+                   Like we said, we're all about our community and strive to make
+                   Eagle a safe, fun, and friendly environment for all! As a community 
+                   program, our goal is to make this community everything that you need and want 
+                   it to be, so don't hesitate to tell us if we need to improve, or if you just 
+                   have a suggestion for an activity. <br>
+                   Please fill out your information below, and we'll get back to you as soon as possible!
+               </p>
+           </div>
+           <div class="about">
+            <form class="login-form" action="" method="POST">
+                <div class="form-control">
+                    <label for="fName">First Name</label>
+                    <input class="" type="text" name="fName" id="fName" value="<%= oldInput.fName %>">
+                </div>
+                <div class="form-control">
+                    <label for="lName">Last Name</label>
+                    <input class="" type="text" name="lName" id="lName" value="<%= oldInput.lName %>">
+                </div>
+                <div class="form-control">
+                    <label for="email">E-Mail</label>
+                    <input class="<%= validationErrors.find(e => e.param === 'email') ? 'invalid' : '' %>" type="email" name="email" id="email" value="<%= oldInput.email %>">
+                </div>
+                <div class="form-control">
+                    <label for="description">Description</label>
+                    <textarea class="<%= validationErrors.find(e => e.param === 'description') ? 'invalid' : '' %>" name="description" id="description" rows="5"></textarea>
+                </div>
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <button class="btn" type="submit">Signup</button>
+            </form>
+           </div>
+           
+     
+   </section>
+    <%- include('includes/footer.ejs') %>
+<%- include('includes/end.ejs') %>
