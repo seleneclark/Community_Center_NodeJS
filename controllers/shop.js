@@ -71,7 +71,6 @@ exports.getIndex = (req, res, next) => {
     });
 }; //End getIndex middleware
 
-
 //Start getCart middleware
 exports.getCart = (req, res, next) => {
   req.user
@@ -215,3 +214,4 @@ exports.getOrders = (req, res, next) => {
       return next(error);
     });
 }; //End getOrder middleware
+

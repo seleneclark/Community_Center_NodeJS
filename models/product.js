@@ -1,9 +1,18 @@
+const { Timestamp } = require('bson');
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
 const productSchema = new Schema({
     title: {
+        type: String,
+        required: true
+    },
+    date: {
+        type: Date,
+        required: true
+    },
+     time: {
         type: String,
         required: true
     },
@@ -16,10 +25,6 @@ const productSchema = new Schema({
         required: true
     },
     description: {
-        type: String,
-        required: true
-    },
-    author: {
         type: String,
         required: true
     },

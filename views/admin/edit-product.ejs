@@ -31,6 +31,24 @@
                     value="<% if (editing || hasError) { %><%= product.imageUrl %><% } %>">
             </div>
             <div class="form-control">
+                <label for="date">Date:</label>
+                <input class="<%= validationErrors.find(e => e.param === 'date') ? 'invalid' : '' %>" 
+                    type="date" 
+                    name="date"
+                    id="date"
+                    value="<% if (editing || hasError) { %><%= product.date %><% } %>" 
+                    min="2021-11-04" max="2025-12-31">
+            </div>
+            <div class="form-control">
+                <label for="time">Time:</label>
+                <input class="<%= validationErrors.find(e => e.param === 'time') ? 'invalid' : '' %>" 
+                    type="time" 
+                    name="time"
+                    id="time" 
+                    value="<% if (editing || hasError) { %><%= product.time %><% } %>" 
+                    min="09:00" max="20:00">
+            </div>
+            <div class="form-control">
                 <label for="price">Price</label>
                 <input 
                     class="<%= validationErrors.find(e => e.param === 'price') ? 'invalid' : '' %>" 
@@ -48,16 +66,6 @@
                     id="description" 
                     rows="5"><% if (editing || hasError) { %><%= product.description %><% } %></textarea>
             </div>
-            <div class="form-control">
-                <label for="Author">Author</label>
-                <input   
-                    class="<%= validationErrors.find(e => e.param === 'author') ? 'invalid' : '' %>"
-                    type="text" 
-                    name="author" 
-                    id="author" 
-                    value="<% if (editing || hasError) { %><%= product.author %><% } %>">
-            </div>
-            
             <% if (editing) { %>
                 <input type="hidden" value="<%= product._id %>" name="productId">
             <% } %>

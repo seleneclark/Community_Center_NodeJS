@@ -16,6 +16,10 @@
   text-align: center;
 }
 
+.product__date, .product__time {
+  text-align: center;
+}
+
 .product__price {
   text-align: center;
   color: #4d4d4d;
@@ -27,7 +31,7 @@
 }
 
 .product__image {
-  max-height: 30vh;
+  max-width: 15vw;
   padding: 2rem;
   width: auto;
 }

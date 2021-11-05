@@ -18,11 +18,12 @@ exports.getAddProduct = (req, res, next) => {
 
 //start postAddProduct Middleware
 exports.postAddProduct = (req, res, next) => {
-  const title = req.body.title;
+  const title = req.body.title;  
+  const date = req.body.date;
+  const time = req.body.time;
   const imageUrl = req.body.imageUrl;
   const price = req.body.price;
   const description = req.body.description;
-  const author = req.body.author;
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
@@ -34,10 +35,11 @@ exports.postAddProduct = (req, res, next) => {
       hasError: true,
       product: {
         title: title,
+        date: date,
+        time: time,
         imageUrl: imageUrl,
         price: price,
-        description: description,
-        author: author
+        description: description
         },
      errorMessage: errors.array()[0].msg,
       validationErrors: errors.array()
@@ -46,10 +48,11 @@ exports.postAddProduct = (req, res, next) => {
 
   const product = new Product({
     title: title,
+    date: date,
+    time: time,
     imageUrl: imageUrl,
     price: price,
     description: description,
-    author: author,
     userId: req.user
   });
   product
@@ -102,11 +105,12 @@ exports.getEditProduct = (req, res, next) => {
 exports.postEditProduct = (req, res, next) => {
   const prodId = req.body.productId;
   const updatedTitle = req.body.title;
+  const updatedDate = req.body.date;
+  const updatedTime = req.body.time;
   const updatedImageUrl = req.body.imageUrl;
   const updatedPrice = req.body.price;
   const updatedDesc = req.body.description;
-  const updatedAuthor = req.body.author;
-
+ 
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
@@ -117,10 +121,11 @@ exports.postEditProduct = (req, res, next) => {
       hasError: true,
       product: {
         title: updatedTitle,
+        date: updatedDate,
+        time: updatedTime,
         imageUrl: updatedImageUrl,
         price: updatedPrice,
         description: updatedDesc,
-        author: updatedAuthor,
         _id: prodId
       },
       errorMessage: errors.array()[0].msg,
@@ -134,10 +139,11 @@ exports.postEditProduct = (req, res, next) => {
         return res.redirect('/');
       }
       product.title = updatedTitle;
+      product.date = updatedDate;
+      product.time = updatedTime;
       product.imageUrl = updatedImageUrl;
       product.price = updatedPrice;
       product.description = updatedDesc;
-      product.author = updatedAuthor;
       return product.save()
         .then(result => {
           //console.log('UPDATED PRODUCT!');

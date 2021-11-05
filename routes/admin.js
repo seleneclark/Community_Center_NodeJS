@@ -21,6 +21,13 @@ router.post('/add-product',
         .isString()
         .isLength({ min: 3 })
         .trim(),
+      body('date')
+        .isString()
+        .isLength({min: 10})
+        .trim(),
+      body('time')
+        .isString()
+        .trim(),
       body('imageUrl')
         .isURL(),
       body('price')
@@ -28,9 +35,6 @@ router.post('/add-product',
       body('description')
         .isString()
         .isLength({ min: 10, max: 500 })
-        .trim(),
-      body('author')
-        .isLength({ min: 3, max: 200 })
         .trim()
     ],
     isAuth,
@@ -48,6 +52,8 @@ router.post('/edit-product',
       .isString()
       .isLength({ min: 3 })
       .trim(),
+     body('date')
+      .isDate(),
     body('imageUrl')
       .isURL(),
     body('price')
@@ -55,9 +61,6 @@ router.post('/edit-product',
     body('description')
       .isString()
       .isLength({ min: 10, max: 500 })
-      .trim(),
-    body('author')
-      .isLength({ min: 3, max: 200})
       .trim()
   ],
   isAuth,

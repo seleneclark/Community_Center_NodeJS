@@ -6,32 +6,58 @@
     <%- include('../includes/navigation.ejs') %>
 
     <main>
-        <% if (prods.length > 0) { %>
-        <div class="grid">
-            <% for (let product of prods) { %>
-            <article class="card product-item centered">
-                <header class="card__header">
-                    <h1 class="product__title"><%= product.title %></h1>
-                </header>
-                <div class="card__image card__image-box">
-                    <img class="product__image" src="<%= product.imageUrl %>" alt="<%= product.title %>">
+        <section class="section aboutUsSec">
+            <div class=" heading aboutHead">
+                <h1>Welcome To The Eagle Community</h1>
+                <div class="about">
+                    <p>We are glad you are apart of our community. Here in Eagle,
+                        we pride ourselves on striving to be a fun and interactive
+                        community that welcomes all. We enjoy getting our community
+                        together as much as possible, as we beleive a friendly community
+                        creates the ideal setting for the youth here. Here on our community
+                        page, you will find a variety of activities for a variety of ages.
+                        We have toddler time to senior date nights weekly, and everything in
+                        between. Join us during the summer months for movies in the park on the
+                        third Saturday of every month, or in the winter for ice skating! We hope to
+                        see you soon!
+                    </p>
                 </div>
-                <div class="card__content">
-                    <h2 class="product__price">$<%= product.price %></h2><br>
-                    <p class="product__description"><%= product.description %></p>
-                </div>
-                <div class="card__content">
-                    <p class="product__author">Author: <%= product.author %></p>
-                </div>
-                <div class="card__actions">
-                    <a href="/products/<%= product._id %>" class="btn">Details</a>
-                    <%- include('../includes/add-to-cart.ejs', {product: product}) %>
-                </div>
-            </article>
+            </div>
+        </section>
+        <section class="section events">
+            <div class="heading eventsHead">
+                <h2>Coming This Month</h2>
+            </div>
+            <% if (prods.length > 0) { %>
+            <div class="grid">
+                <% for (let product of prods) { %>
+                <article class="card product-item centered">
+                    <header class="card__header">
+                        <h1 class="product__title"><%= product.title %></h1>
+                    </header>
+                    <div class="card__content">
+                        <p class="product__date">Date: <%= product.date %></p>
+                    </div>
+                    <div class="card__content">
+                        <p class="product__time">Time: <%= product.time %></p>
+                    </div>
+                    <div class="card__image card__image-box">
+                        <img class="product__image" src="<%= product.imageUrl %>" alt="<%= product.title %>">
+                    </div>
+                    <div class="card__content">
+                        <h2 class="product__price">$<%= product.price %></h2><br>
+                        <p class="product__description"><%= product.description %></p>
+                    </div>                   
+                    <div class="card__actions">
+                        <a href="/products/<%= product._id %>" class="btn">Details</a>
+                        <%- include('../includes/add-to-cart.ejs', {product: product}) %>
+                    </div>
+                </article>
+                <% } %>
+            </div>
+            <% } else { %>
+            <h1>No Products Found!</h1>
             <% } %>
-        </div>
-        <% } else { %>
-        <h1>No Products Found!</h1>
-        <% } %>
+        </section>
     </main>
     <%- include('../includes/end.ejs') %>

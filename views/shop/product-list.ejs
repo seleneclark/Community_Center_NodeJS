@@ -15,6 +15,12 @@
                         <%= product.title %>
                     </h1>
                 </header>
+                <div class="card__content">
+                    <p class="product__date">Date: <%= product.date %></p>
+                </div>
+                <div class="card__content">
+                    <p class="product__time">Date: <%= product.time %></p>
+                </div>
                 <div class="card__image card__image-box">
                     <img class="product__image" src="<%= product.imageUrl %>" alt="<%= product.title %>">
                 </div>
@@ -23,9 +29,6 @@
                     <p class="product__description">
                         <%= product.description %>
                     </p>
-                </div>
-                <div class="card__content">
-                    <p class="product__author">Author: <%= product.author %></p>
                 </div>
                 <div class="card__actions">
                     <a href="/products/<%= product._id %>" class="btn">Details</a>
