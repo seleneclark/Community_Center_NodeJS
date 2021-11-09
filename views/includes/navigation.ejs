@@ -1,27 +1,31 @@
 <div class="backdrop"></div>
 <header class="main-header">
     <button id="side-menu-toggle">Menu</button>
+    
     <nav class="main-header__nav">
+        <img class="logo" src="/img/logo.png" alt="eagle logo">
+        
         <ul class="main-header__item-list">
+            
             <li class="main-header__item">
-                <a class="<%= path === '/' ? 'active' : '' %>" href="/">Shop</a>
+                <a class="<%= path === '/' ? 'active' : '' %>" href="/">Home</a>
             </li>
             <li class="main-header__item">
-                <a class="<%= path === '/products' ? 'active' : '' %>" href="/products">Products</a>
+                <a class="<%= path === '/products' ? 'active' : '' %>" href="/products">Activities</a>
             </li>
             <% if (isAuthenticated) { %>
             <li class="main-header__item">
                 <a class="<%= path === '/cart' ? 'active' : '' %>" href="/cart">Cart</a>
             </li>
             <li class="main-header__item">
-                <a class="<%= path === '/orders' ? 'active' : '' %>" href="/orders">Orders</a>
+                <a class="<%= path === '/orders' ? 'active' : '' %>" href="/orders">Your Activities</a>
             </li>
             <li class="main-header__item">
-                <a class="<%= path === '/admin/add-product' ? 'active' : '' %>" href="/admin/add-product">Add Product
+                <a class="<%= path === '/admin/add-product' ? 'active' : '' %>" href="/admin/add-product">Add Activity
                 </a>
             </li>
             <li class="main-header__item">
-                <a class="<%= path === '/admin/products' ? 'active' : '' %>" href="/admin/products">Admin Products
+                <a class="<%= path === '/admin/products' ? 'active' : '' %>" href="/admin/products">Admin Activities
                 </a>
             </li>
             <% } %>
@@ -43,6 +47,7 @@
             </li>
             <% } %>
         </ul>
+        <p> p: (908) 865 - 2231 <br> e: contact@eaglecenter.org</p>
     </nav>
 </header>
 
@@ -87,3 +92,4 @@
         <% } %>
     </ul>
 </nav>
+<br>

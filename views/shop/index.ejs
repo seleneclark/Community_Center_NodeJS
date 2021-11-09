@@ -4,29 +4,74 @@
 
 <body>
     <%- include('../includes/navigation.ejs') %>
+    <section class="banner">
+    <!-- Slideshow Container-->
+    <div class="slideshow-container">
+        <!-- Images -->
+       
 
+        <div class="mySlides fade">
+            <img src="/img/home-kids.jpg" style="width:100%">
+            
+        </div>
+
+        <div class="mySlides fade">
+            <img src="/img/home-playground.jpg" style="width:100%">
+            
+        </div>
+
+        <div class="mySlides fade">
+            <img src="/img/home-swim.jpg" style="width:100%">
+          
+        </div>
+
+    <!-- Next and previous buttons -->
+  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1)">&#10095;</a>    
+     
+    </div>
+
+    <!-- The dots/circles -->
+<div style="text-align:center">
+    <span class="dot" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+    <span class="dot" onclick="currentSlide(3)"></span>
+    
+  </div>
+</section>
     <main>
         <section class="section aboutUsSec">
+            
             <div class=" heading aboutHead">
-                <h1>Welcome To The Eagle Community</h1>
+                <div class="welcome"><h1 style="color: #1c78a3;">Welcome To The Eagle Community</h1>   <img src="/img/logo.png"></div>
                 <div class="about">
-                    <p>We are glad you are apart of our community. Here in Eagle,
+                    <h3>We are glad you are apart of our community.</h3> 
+                    <p>Here in Eagle,
                         we pride ourselves on striving to be a fun and interactive
-                        community that welcomes all. We enjoy getting our community
-                        together as much as possible, as we beleive a friendly community
-                        creates the ideal setting for the youth here. Here on our community
+                        community that welcomes all.<br>
+                         We enjoy getting our community
+                        together as much as possible, as we believe a friendly community
+                        creates the ideal setting for the youth here.</p>
+                         <p>Here on our community
                         page, you will find a variety of activities for a variety of ages.
                         We have toddler time to senior date nights weekly, and everything in
-                        between. Join us during the summer months for movies in the park on the
-                        third Saturday of every month, or in the winter for ice skating! We hope to
-                        see you soon!
-                    </p>
-                </div>
+                        between.</p>
+                        <p>Join us during the summer months for movies in the park on the
+                        third Saturday of every month, or in the winter for ice skating! </p>
+                        <h3 style="text-align:center;">We hope to
+                        see you soon!</h3>
+                     
+                    </div>
+                
+                <br>
             </div>
+            <img class="family" src="/img/home-family.jpg">
         </section>
+        <br>
+        <hr>
         <section class="section events">
             <div class="heading eventsHead">
-                <h2>Coming This Month</h2>
+                <h1 style="text-align: center; color: #1c78a3;">Coming This Month</h1>
             </div>
             <% if (prods.length > 0) { %>
             <div class="grid">
@@ -63,10 +108,10 @@
             <div class="heading contactHead">
                 <h3>Need To Get In Contact?</h3>
             </div>
-            <div class="about">
-                <p>Have any questions, comments, or concerns? We're all ears!
+            <div class="contact">
+                <p>Have any questions, comments, or concerns? We're all ears!<br>
                     Like we said, we're all about our community and strive to make
-                    Eagle a safe, fun, and friendly environment for all! As a community
+                    Eagle a safe, fun, and friendly environment for all! <br> As a community
                     program, our goal is to make this community everything that you need and want
                     it to be, so don't hesitate to tell us if we need to improve, or if you just
                     have a suggestion for an activity. <br>
@@ -76,4 +121,34 @@
         </section>
 
     </main>
+    <script>
+        var slideIndex = 1;
+showSlides(slideIndex);
+
+// Next/previous controls
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+}
+    </script>
     <%- include('../includes/end.ejs') %>
