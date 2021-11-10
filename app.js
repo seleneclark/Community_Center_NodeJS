@@ -53,6 +53,7 @@ app.use(flash());
 //setup local variables
 app.use((req, res, next) => {
   res.locals.isAuthenticated = req.session.isLoggedIn;
+  res.locals.isAdmin = req.session.isAdmin;
   res.locals.csrfToken = req.csrfToken();
   next();
 });
