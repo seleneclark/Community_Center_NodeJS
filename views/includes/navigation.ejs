@@ -20,6 +20,8 @@
             <li class="main-header__item">
                 <a class="<%= path === '/orders' ? 'active' : '' %>" href="/orders">Your Activities</a>
             </li>
+            <% } %>
+            <% if (isAuthenticated & isAdmin) { %>
             <li class="main-header__item">
                 <a class="<%= path === '/admin/add-product' ? 'active' : '' %>" href="/admin/add-product">Add Activity
                 </a>

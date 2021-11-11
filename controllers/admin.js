@@ -160,7 +160,8 @@ exports.postEditProduct = (req, res, next) => {
 
 //start getProducts Middleware
 exports.getProducts = (req, res, next) => {
-  Product.find({ userId: req.user._id })
+  //Product.find({ userId: req.user._id })
+  Product.find({})
     // .select('title price -_id')
     // .populate('userId', 'name')
     .then(products => {
