@@ -135,9 +135,6 @@ exports.postEditProduct = (req, res, next) => {
 
   Product.findById(prodId)
     .then(product => {
-      if (product.userId.toString() !== req.user._id.toString()) {
-        return res.redirect('/');
-      }
       product.title = updatedTitle;
       product.date = updatedDate;
       product.time = updatedTime;
