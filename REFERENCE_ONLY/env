@@ -2,4 +2,8 @@
 
 MONGO_URI = ""
 
-HEROKU_REPO = ""
+HEROKU = ""
+
+SG_EMAIL = 
+
+SG_API_KEY =

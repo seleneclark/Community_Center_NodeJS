@@ -1,16 +1,12 @@
-//const nodemailer = require('nodemailer');
-//const sendgridTransport = require('nodemailer-sendgrid-transport');
 const Product = require('../models/product');
 const Order = require('../models/order');
 const User = require('../models/user');
 require('dotenv').config();
 
+
+const ITEMS_PER_PAGE = 3;
+
 // const api_key = process.env.SG_API_KEY;
-// const transporter = nodemailer.createTransport(sendgridTransport({
-// auth: {
-//   api_key: process.env.SG_API_KEY
-// }
-// }));
 
 // const SG_EMAIL = process.env.SG_EMAIL;
 
