@@ -15,10 +15,10 @@
           </li>
             <% if (isAuthenticated) { %>
             <li class="main-header__item">
-                <a class="<%= path === '/cart' ? 'active' : '' %>" href="/cart">My Activities</a>
+                <a class="<%= path === '/cart' ? 'active' : '' %>" href="/cart">Activity Cart</a>
             </li>
             <li class="main-header__item">
-                <a class="<%= path === '/orders' ? 'active' : '' %>" href="/orders">Your Activities</a>
+                <a class="<%= path === '/orders' ? 'active' : '' %>" href="/orders">Purchased Activities</a>
             </li>
             <% } %>
             <% if (isAuthenticated & isAdmin) { %>
@@ -28,6 +28,10 @@
             </li>
             <li class="main-header__item">
                 <a class="<%= path === '/admin/products' ? 'active' : '' %>" href="/admin/products">Admin Activities
+                </a>
+            </li>
+            <li class="main-header__item">
+                <a class="<%= path === '/all-orders' ? 'active' : '' %>" href="/all-orders">All Signups</a>
                 </a>
             </li>
             <% } %>
@@ -56,24 +60,24 @@
 <nav class="mobile-nav">
     <ul class="mobile-nav__item-list">
         <li class="mobile-nav__item">
-            <a class="<%= path === '/' ? 'active' : '' %>" href="/">Shop</a>
+            <a class="<%= path === '/' ? 'active' : '' %>" href="/">Home</a>
         </li>
         <li class="mobile-nav__item">
-            <a class="<%= path === '/products' ? 'active' : '' %>" href="/products">Products</a>
+            <a class="<%= path === '/products' ? 'active' : '' %>" href="/products">Activities</a>
         </li>
         <% if (isAuthenticated) { %>
         <li class="mobile-nav__item">
-            <a class="<%= path === '/cart' ? 'active' : '' %>" href="/cart">Cart</a>
+            <a class="<%= path === '/cart' ? 'active' : '' %>" href="/cart">Activity Cart</a>
         </li>
         <li class="mobile-nav__item">
-            <a class="<%= path === '/orders' ? 'active' : '' %>" href="/orders">Orders</a>
+            <a class="<%= path === '/orders' ? 'active' : '' %>" href="/orders">Purchased Activities</a>
         </li>
         <li class="mobile-nav__item">
-            <a class="<%= path === '/admin/add-product' ? 'active' : '' %>" href="/admin/add-product">Add Product
+            <a class="<%= path === '/admin/add-product' ? 'active' : '' %>" href="/admin/add-product">Add Activities
             </a>
         </li>
         <li class="mobile-nav__item">
-            <a class="<%= path === '/admin/products' ? 'active' : '' %>" href="/admin/products">Admin Products
+            <a class="<%= path === '/admin/products' ? 'active' : '' %>" href="/admin/products">Admin Activities
             </a>
         </li>
         <% } %>

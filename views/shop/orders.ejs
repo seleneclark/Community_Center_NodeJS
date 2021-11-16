@@ -5,21 +5,35 @@
 <body>
     <%- include('../includes/navigation.ejs') %>
     <main>
-        <% if (orders.length <= 0) { %>
+        <h1>Purchased Activities:</h1>
+        <%if (orders.length <= 0) { %>
         <h1>Nothing there!</h1>
-        <% } else { %>
-            <ul class="orders">
-                <% orders.forEach(order => { %>
-                <li class="orders__item">
-                    <h1>Order - # <%= order._id %></h1>
+        <% } else { 
+            productsArray = []
+            singleProducts = []%>
+
+<!-- Code that uses 'sortedActivities' which is an array of the user's activities sorted so the soonest will appear at the top 
+    and latest at bottom -->
+            <ul class="orders">                    
                     <ul class="orders__products">
-                        <% order.products.forEach(p => { %>
-                        <li class="orders__products-item"><%= p.product.title %> (<%= p.quantity %>)</li>
+                        <% sortedActivities.forEach(s => { %>
+                        <li class="orders__item"><h1><%= s.product.title%></h1> Time:  <%=s.product.time%> <br> Date: <%=s.product.date %> </li>
                         <% }); %>
                     </ul>
-                </li>
-                <% });%>
             </ul>
-        <% } %>
+
+ <!--Original Code that uses 'orders' and isn't sorted by date
+             <ul class="orders">
+                <% orders.forEach(order => { 
+                    productsArray.push(order.products)%>
+                    <ul class="orders__products">
+                        <% order.products.forEach(p => { %>
+                        <li class="orders__item"><h1><%= p.product.title%></h1> Time:  <%=p.product.time%> <br> Date: <%=p.product.date %> </li>
+                        <% }); %>
+                    </ul>
+                <% });%>
+            </ul> -->
+        <% }  %>
+
     </main>
     <%- include('../includes/end.ejs') %>
