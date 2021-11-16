@@ -164,14 +164,13 @@ padding-left: -10px;
   background-color: #faf0e6;
   padding: 0 4rem;
   display: flex;
-
 }
 
 .main-header__nav {
   height: 100%;
   width: 100%;
   display: none;
-   align-items: center; 
+  align-items: center; 
   justify-content:space-evenly;
 }
 
@@ -303,7 +302,6 @@ padding-left: -10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   padding: 2rem;
   background-color: #faf0e6;
-
 }
 .card:hover{
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.65);

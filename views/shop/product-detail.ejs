@@ -14,7 +14,7 @@
             <div class="card__image card__image-box centered">
                 <img src="<%= product.imageUrl %>" alt="<%= product.title %>">
             </div>
-            <h2><%= product.price %></h2>
+            <h2>$<%= product.price %></h2>
             <p class="product__detail-description centered"><%= product.description %></p>
             <%- include('../includes/add-to-cart.ejs') %>
             </div>
