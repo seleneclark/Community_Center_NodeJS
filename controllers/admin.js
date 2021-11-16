@@ -180,7 +180,7 @@ exports.getProducts = (req, res, next) => {
 //start postDeleteProduct Middleware
 exports.postDeleteProduct = (req, res, next) => {
   const prodId = req.body.productId;
-  Product.deleteOne({ _id: prodId, userId: req.user._id })
+  Product.deleteOne({ _id: prodId })
     .then(() => {
       console.log('DESTROYED PRODUCT');
       res.redirect('/admin/products');
