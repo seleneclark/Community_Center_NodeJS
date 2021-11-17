@@ -223,11 +223,6 @@ exports.postOrder = (req, res, next) => {
     });
 }; //End postOrder middleware
  
- 
-
-
-
-
 
 //Start getOrders middleware
 exports.getOrders = (req, res, next) => {
@@ -345,3 +340,17 @@ exports.getAllOrders = (req, res, next) => {
       return next(error);
     });
 }; //End getAllOrder middleware
+
+exports.getAbout = (req, res, next) => {
+  res.render('about', {
+    path: '/about',
+    pageTitle: 'About Us',
+    oldInput: {
+      name: '',
+      email: '',
+      password: '',
+      confirmPassword: ''
+    },
+    validationErrors: []
+  });
+};
