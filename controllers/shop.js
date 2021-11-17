@@ -1,11 +1,10 @@
+// const sgMail = require('@sendgrid/mail');
 const Product = require('../models/product');
 const Order = require('../models/order');
 const User = require('../models/user');
 require('dotenv').config();
 
 const ITEMS_PER_PAGE = 3;
-
-// const api_key = process.env.SG_API_KEY;
 
 // const SG_EMAIL = process.env.SG_EMAIL;
  
@@ -245,10 +244,11 @@ exports.postOrder = (req, res, next) => {
       res.redirect('/orders');
     })
     // .then(() => {
-    //   return transporter.sendMail({
-    //     to: req.user.email,
-    //     from: SG_EMAIL,
-    //     subject: 'Order',
+    //    return sgMail
+    //       .send({
+    //         to: req.body.email,
+    //         from: SG_EMAIL,
+    //         subject: 'Order',
     //     html: `<p>Dear ' + ${req.user.name}, <br>You order was successfully placed. We hope you enjoy your books.</p>`
     //   });
     // })
@@ -259,55 +259,43 @@ exports.postOrder = (req, res, next) => {
     });
 }; //End postOrder middleware
  
- 
-
-
-
-
-
-//Start getOrders middleware
+ //Start getOrders middleware
 exports.getOrders = (req, res, next) => {
   Order.find({ 'user.userId': req.user._id })
     .then(orders => {
-            productsBigArray = []
-            productArray = []
-           orders.forEach(order => { 
-               productsBigArray.push(order.products)
-              });
-              productArray = productsBigArray.flat();
-              productArray.forEach(p => {
-                // console.log(p.product.date);
-                // console.log(p);
-              })
-              var array = [{id: 1, date: '2021-11-12'}, {id: 2, date: '2021-11-2'}];
+        productsBigArray = []
+        productArray = []
+        orders.forEach(order => { 
+            productsBigArray.push(order.products)
+          });
+          productArray = productsBigArray.flat();
+          productArray.forEach(p => {
+            // console.log(p.product.date);
+            // console.log(p);
+          })
+          var array = [{id: 1, date: '2021-11-12'}, {id: 2, date: '2021-11-2'}];
 
-              productArray.sort(function(a,b){
-                var c = new Date(a.product.date);
-                var d = new Date(b.product.date);
-                return c-d;
-                });
+          productArray.sort(function(a,b){
+            var c = new Date(a.product.date);
+            var d = new Date(b.product.date);
+            return c-d;
+            });
 
-              // console.log(productArray)
-
-
-              
-              // productsMedArray.push(productsBigArray[0])
-              // console.log(productsBigArray[0])
-    //console.log(productsBigArray[0][0].product.date)
-
-    
-      //         productsArray.push(order.products)
-
-      //       for (let i = 0; i < productsArray.length; i++) {
-      //         for (let n = 0; n < productsArray[i].length; i++) {
-      //           single.push(productsArray[i][n])
-      //       }
-      //       }
-                  
-      // order.products.forEach(p => {         
-      //  }); 
-      //   });
-        // console.log(single)
+          // console.log(productArray)
+          
+          //productsMedArray.push(productsBigArray[0])
+          //console.log(productsBigArray[0])
+          //console.log(productsBigArray[0][0].product.date)    
+          // productsArray.push(order.products)
+          //for (let i = 0; i < productsArray.length; i++) {
+            //for (let n = 0; n < productsArray[i].length; i++) {
+              //single.push(productsArray[i][n])
+              //}
+            //}                  
+          //order.products.forEach(p => {         
+            //}); 
+          //});
+          // console.log(single)
       res.render('shop/orders', {
         path: '/orders',
         pageTitle: 'Your Orders',

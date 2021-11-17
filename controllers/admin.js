@@ -3,6 +3,27 @@ const { validationResult } = require('express-validator');
 const Product = require('../models/product');
 
 
+//start getProducts Middleware
+exports.getProducts = (req, res, next) => {
+  //Product.find({ userId: req.user._id })
+  Product.find({})
+    // .select('title price -_id')
+    // .populate('userId', 'name')
+    .then(products => {
+      //console.log(products);
+      res.render('admin/products', {
+        prods: products,
+        pageTitle: 'Admin Products',
+        path: '/admin/products'
+      });
+    })
+    .catch(err => {
+      const error = new Error(err);
+      error.httpStatusCode = 500;
+      return next(error);
+    });
+};//end getProducts
+
 //startgetAddProduct Middleware
 exports.getAddProduct = (req, res, next) => {
   res.render('admin/edit-product', {
@@ -154,27 +175,6 @@ exports.postEditProduct = (req, res, next) => {
     });
 }; //end postEditProduct
 
-
-//start getProducts Middleware
-exports.getProducts = (req, res, next) => {
-  //Product.find({ userId: req.user._id })
-  Product.find({})
-    // .select('title price -_id')
-    // .populate('userId', 'name')
-    .then(products => {
-      //console.log(products);
-      res.render('admin/products', {
-        prods: products,
-        pageTitle: 'Admin Products',
-        path: '/admin/products'
-      });
-    })
-    .catch(err => {
-      const error = new Error(err);
-      error.httpStatusCode = 500;
-      return next(error);
-    });
-};//end getProducts
 
 
 //start postDeleteProduct Middleware
