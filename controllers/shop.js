@@ -83,10 +83,36 @@ exports.getCart = (req, res, next) => {
         console.log(total);
         return total;
       })
+
+      // console.log(products[3].productId)
+      sortedArray = []
+    //   productArray = []
+     products.forEach(order => { 
+      sortedArray.push(order.productId)
+        });
+        // productArray = productsBigArray1.flat();
+
+              // console.log(productArray.date)
+
+        // productArray.forEach(p => {
+        //   // console.log(p.product.date);
+        //   console.log(p.date);
+        // })
+    //     var array = [{id: 1, date: '2021-11-12'}, {id: 2, date: '2021-11-2'}];
+
+        sortedArray.sort(function(a,b){
+          var c = new Date(a.date);
+          var d = new Date(b.date);
+          return c-d;
+          });
+          // console.log(productArray)
+
+
       res.render('shop/cart', {
         path: '/cart',
         pageTitle: 'Your Cart',
         products: products,
+        sortedArray: sortedArray,
         totalSum: total
       });
     })
@@ -213,11 +239,11 @@ exports.getOrders = (req, res, next) => {
                productsBigArray.push(order.products)
               });
               productArray = productsBigArray.flat();
-              productArray.forEach(p => {
+              // productArray.forEach(p => {
                 // console.log(p.product.date);
                 // console.log(p);
-              })
-              var array = [{id: 1, date: '2021-11-12'}, {id: 2, date: '2021-11-2'}];
+              // })
+              // var array = [{id: 1, date: '2021-11-12'}, {id: 2, date: '2021-11-2'}];
 
               productArray.sort(function(a,b){
                 var c = new Date(a.product.date);

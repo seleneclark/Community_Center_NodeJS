@@ -5,17 +5,49 @@
 <body>
     <%- include('../includes/navigation.ejs') %>
     <main>
-        <% if (products.length > 0) { %>
+        <% if (sortedArray.length > 0) { %>
         <ul class="cart__item-list">
-            <% products.forEach(p => { %>
+            <% sortedArray.forEach(p => { %>
             <li class="cart__item">
-                <h1><%= p.productId.title %></h1>
-                <!-- <h2>Quantity: <%= p.quantity %></h2> -->
+                <h1><%= p.title %></h1>
+
+                <% var time = p.time; // your input
+
+                time = time.split(':'); // convert to array
+                
+                // fetch
+                var hours = Number(time[0]);
+                var minutes = Number(time[1]);
+                
+                // calculate
+                var timeValue;
+                
+                if (hours > 0 && hours <= 12) {
+                  timeValue= "" + hours;
+                } else if (hours > 12) {
+                  timeValue= "" + (hours - 12);
+                } else if (hours == 0) {
+                  timeValue= "12";
+                }
+                 
+                timeValue += (minutes < 10) ? ":0" + minutes : ":" + minutes;  // get minutes
+                timeValue += (hours >= 12) ? " P.M." : " A.M.";  // get AM/PM
+                 
+
+                var options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+                var today  = new Date(p.date);
+
+            <!-- // console.log(today.toLocaleDateString("en-US")); // 9/17/2016
+                // console.log(today.toLocaleDateString("en-US", options)); // Saturday, September 17, 2016 -->
+   
+                var formattedDate = today.toLocaleDateString("en-US", options);
+                %>
+
                 <h2>Price: <br>$<%= p.price %></h2>
-                <h2>Date: <br><%= p.productId.date %></h2>
-                <h2>Time: <br><%= p.productId.time %></h2>
+                <h2>Date: <br><%= formattedDate %></h2>
+                <h2>Time: <br><%= timeValue %></h2>
                 <form action="/cart-delete-item" method="POST">
-                    <input type="hidden" value="<%= p.productId._id %>" name="productId">
+                    <input type="hidden" value="<%= p._id %>" name="productId">
                     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                     <button class="btn danger" type="submit">Delete</button>
                 </form>
