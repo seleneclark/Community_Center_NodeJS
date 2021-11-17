@@ -17,7 +17,38 @@
             <ul class="orders">                    
                     <ul class="orders__products">
                         <% sortedActivities.forEach(s => { %>
-                        <li class="orders__item"><h1><%= s.product.title%></h1> Time:  <%=s.product.time%> <br> Date: <%=s.product.date %> </li>
+                            <% var time = s.product.time; // your input
+
+                            time = time.split(':'); // convert to array
+                            
+                            // fetch
+                            var hours = Number(time[0]);
+                            var minutes = Number(time[1]);
+                            
+                            // calculate
+                            var timeValue;
+                            
+                            if (hours > 0 && hours <= 12) {
+                              timeValue= "" + hours;
+                            } else if (hours > 12) {
+                              timeValue= "" + (hours - 12);
+                            } else if (hours == 0) {
+                              timeValue= "12";
+                            }
+                             
+                            timeValue += (minutes < 10) ? ":0" + minutes : ":" + minutes;  // get minutes
+                            timeValue += (hours >= 12) ? " P.M." : " A.M.";  // get AM/PM
+                             
+                
+                            var options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+                            var today  = new Date(s.product.date);
+                
+                            <!-- // console.log(today.toLocaleDateString("en-US")); // 9/17/2016
+                            // console.log(today.toLocaleDateString("en-US", options)); // Saturday, September 17, 2016 -->
+                
+                            var formattedDate = today.toLocaleDateString("en-US", options);
+                            %>
+                        <li class="orders__item"><h1><%= s.product.title%></h1> Time:  <%= timeValue %> <br> Date: <%= formattedDate %> </li>
                         <% }); %>
                     </ul>
             </ul>
