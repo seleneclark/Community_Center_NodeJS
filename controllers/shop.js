@@ -13,18 +13,20 @@ const ITEMS_PER_PAGE = 3;
 exports.getProducts = (req, res, next) => {
   Product.find()
     .then(products => {
-      //console.log(products);
+      console.log(products);
       res.render('shop/product-list', {
         prods: products,
         pageTitle: 'All Products',
         path: '/products'
       });
     })
-  .catch(err => {
+    .catch(err => {
+      console.log(err);
       const error = new Error(err);
+    
       error.httpStatusCode = 500;
       return next(error);
-    });
+  });
 };//end getProducts Middleware
  
  

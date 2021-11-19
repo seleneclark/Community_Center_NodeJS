@@ -3,27 +3,6 @@ const { validationResult } = require('express-validator');
 const Product = require('../models/product');
 
 
-//start getProducts Middleware
-exports.getProducts = (req, res, next) => {
-  //Product.find({ userId: req.user._id })
-  Product.find({})
-    // .select('title price -_id')
-    // .populate('userId', 'name')
-    .then(products => {
-      //console.log(products);
-      res.render('admin/products', {
-        prods: products,
-        pageTitle: 'Admin Products',
-        path: '/admin/products'
-      });
-    })
-    .catch(err => {
-      const error = new Error(err);
-      error.httpStatusCode = 500;
-      return next(error);
-    });
-};//end getProducts
-
 //startgetAddProduct Middleware
 exports.getAddProduct = (req, res, next) => {
   res.render('admin/edit-product', {
@@ -62,7 +41,7 @@ exports.postAddProduct = (req, res, next) => {
         price: price,
         description: description
         },
-     errorMessage: errors.array()[0].msg,
+      errorMessage: errors.array()[0].msg,
       validationErrors: errors.array()
     });
   }
@@ -176,11 +155,32 @@ exports.postEditProduct = (req, res, next) => {
 }; //end postEditProduct
 
 
+//start getProducts Middleware
+exports.getProducts = (req, res, next) => {
+  //Product.find({ userId: req.user._id })
+  Product.find({prodId: req._id})
+    // .select('title price -_id')
+    // .populate('userId', 'name')
+    .then(products => {
+      //console.log(products);
+      res.render('admin/products', {
+        prods: products,
+        pageTitle: 'Admin Products',
+        path: '/admin/products'
+      });
+    })
+    .catch(err => {
+      const error = new Error(err);
+      error.httpStatusCode = 500;
+      return next(error);
+    });
+};//end getProducts
+
 
 //start postDeleteProduct Middleware
 exports.postDeleteProduct = (req, res, next) => {
   const prodId = req.body.productId;
-  Product.deleteOne({ _id: prodId })
+  Product.deleteOne({ _id: prodId, userId: req.user._id })
     .then(() => {
       console.log('DESTROYED PRODUCT');
       res.redirect('/admin/products');
