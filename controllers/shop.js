@@ -10,46 +10,26 @@ const ITEMS_PER_PAGE = 3;
  
  
 //start getProducts Middleware
-exports.getProducts = (req, res, next) => {
-  Product.find()
-    .then(products => {
-      console.log(products);
-      res.render('shop/product-list', {
-        prods: products,
-        pageTitle: 'All Products',
-        path: '/products'
-      });
-    })
-    .catch(err => {
-      console.log(err);
-      const error = new Error(err);
-    
-      error.httpStatusCode = 500;
-      return next(error);
-  });
-};//end getProducts Middleware
- 
- 
-//Start getProduct middleware
-// exports.getProduct = (req, res, next) => {
-//   const prodId = req.params.productId;
-//   Product.findById(prodId)
-//     .then(product => {
-//       res.render('shop/product-detail', {
-//         product: product,
-//         pageTitle: product.title,
+// exports.getProducts = (req, res, next) => {
+//   Product.find()
+//     .then(products => {
+//       console.log(products);
+//       res.render('shop/product-list', {
+//         prods: products,
+//         pageTitle: 'All Products',
 //         path: '/products'
 //       });
 //     })
 //     .catch(err => {
+//       console.log(err);
 //       const error = new Error(err);
+    
 //       error.httpStatusCode = 500;
 //       return next(error);
-//     });
-// };
-
-//with pagination
-exports.getProduct = (req, res, next) => {
+//   });
+// };//end getProducts Middleware
+ 
+exports.getProducts = (req, res, next) => {
   const page = +req.query.page || 1;
   let totalItems;
 
@@ -72,6 +52,25 @@ exports.getProduct = (req, res, next) => {
         nextPage: page + 1,
         previousPage: page - 1,
         lastPage: Math.ceil(totalItems / ITEMS_PER_PAGE)
+      });
+    })
+    .catch(err => {
+      const error = new Error(err);
+      error.httpStatusCode = 500;
+      return next(error);
+    });
+};
+
+ 
+//Start getProduct middleware
+exports.getProduct = (req, res, next) => {
+  const prodId = req.params.productId;
+  Product.findById(prodId)
+    .then(product => {
+      res.render('shop/product-detail', {
+        product: product,
+        pageTitle: product.title,
+        path: '/products'
       });
     })
     .catch(err => {
