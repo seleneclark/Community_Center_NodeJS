@@ -80,11 +80,23 @@
         <% } %>
 
        <% if (isAuthenticated & isAdmin) { %>
-            <a class="<%= path === '/admin/add-product' ? 'active' : '' %>" href="/admin/add-product">Add Activities
+        <div class="admin_dropdown">
+            <button class="admin_btn">Admin</button>
+            <div class="admin_dropdown-content">
+     
+            <a class="<%= path === '/admin/add-product' ? 'active' : '' %>" href="/admin/add-product">Add Activity
             </a>
         
+       
             <a class="<%= path === '/admin/products' ? 'active' : '' %>" href="/admin/products">Admin Activities
             </a>
+       
+            <a class="<%= path === '/all-orders' ? 'active' : '' %>" href="/all-orders">All Signups</a>
+            </a>
+        
+        </div>
+    </div>
+        
        
         <% } %>
         <% if (!isAuthenticated) { %>
@@ -94,14 +106,12 @@
             <a class="<%= path === '/signup' ? 'active' : '' %>" href="/signup">Signup</a>
       
         <% } else { %>
-    <ul>
-        <li>
+    
             <form action="/logout" method="post">
                 <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                <button type="submit">Logout</button>
+                <button class="logout_btn" type="submit">Logout</button>
             </form>
-        </li>
-        </ul>
+       
         <% } %>
    
 </div>
