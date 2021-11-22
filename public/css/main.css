@@ -171,9 +171,20 @@ padding-left: -10px;
   height: 100%;
   width: 100%;
   display: none;
-   align-items: center; 
+  align-items: center; 
   justify-content:space-evenly;
 }
+
+.main-header__nav ul sub{
+  position: absolute;
+  left: 0;
+  display: none;
+  margin: 0 0 0 -1px;
+  padding: 0;
+  list-style: none;
+}
+
+
 
 .main-header__item-list {
   list-style: none;
@@ -261,12 +272,12 @@ padding-left: -10px;
 }
 
 #side-menu-toggle {
-  border: 1px solid white;
+  border: 1px solid darkgrey;
   font: inherit;
   padding: 0.5rem;
   display: block;
   background: transparent;
-  color: white;
+  color: darkgrey;
   cursor: pointer;
 }
 

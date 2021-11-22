@@ -18,10 +18,12 @@
                 <a class="<%= path === '/cart' ? 'active' : '' %>" href="/cart">Activity Cart</a>
             </li>
             <li class="main-header__item">
-                <a class="<%= path === '/orders' ? 'active' : '' %>" href="/orders">Purchased Activities</a>
+                <a class="<%= path === '/orders' ? 'active' : '' %>" href="/orders">Enrolled Activities</a>
             </li>
             <% } %>
             <% if (isAuthenticated & isAdmin) { %>
+                <li class="main-header__item"><a href="#">Admin</a>
+                <ul class="main-header__item-list sub">
             <li class="main-header__item">
                 <a class="<%= path === '/admin/add-product' ? 'active' : '' %>" href="/admin/add-product">Add Activity
                 </a>
@@ -34,6 +36,9 @@
                 <a class="<%= path === '/all-orders' ? 'active' : '' %>" href="/all-orders">All Signups</a>
                 </a>
             </li>
+            </ul>
+            </li>
+           
             <% } %>
         </ul>
         <ul class="main-header__item-list">
@@ -53,7 +58,7 @@
             </li>
             <% } %>
         </ul>
-        <p> p: (908) 865 - 2231 <br> e: contact@eaglecenter.org</p>
+       
     </nav>
 </header>
 
@@ -70,7 +75,7 @@
             <a class="<%= path === '/cart' ? 'active' : '' %>" href="/cart">Activity Cart</a>
         </li>
         <li class="mobile-nav__item">
-            <a class="<%= path === '/orders' ? 'active' : '' %>" href="/orders">Purchased Activities</a>
+            <a class="<%= path === '/orders' ? 'active' : '' %>" href="/orders">Enrolled Activities</a>
         </li>
         <li class="mobile-nav__item">
             <a class="<%= path === '/admin/add-product' ? 'active' : '' %>" href="/admin/add-product">Add Activities
@@ -79,6 +84,7 @@
         <li class="mobile-nav__item">
             <a class="<%= path === '/admin/products' ? 'active' : '' %>" href="/admin/products">Admin Activities
             </a>
+           
         </li>
         <% } %>
         <% if (!isAuthenticated) { %>
