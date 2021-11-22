@@ -1,11 +1,12 @@
 <%- include('includes/head.ejs') %>
+<link rel="stylesheet" href="/css/forms.css">
 </head>
 
 <body>
     <%- include('includes/navigation.ejs') %>
   
-   <section class="section contactUs">
-       <div class="heading contactHead">
+   <section class="aboutUs">
+       <div class="aboutHeader">
            <h1>Need To Get In Contact?</h1>
         </div>
            <div class="about">
@@ -14,12 +15,14 @@
                    Eagle a safe, fun, and friendly environment for all! As a community 
                    program, our goal is to make this community everything that you need and want 
                    it to be, so don't hesitate to tell us if we need to improve, or if you just 
-                   have a suggestion for an activity. <br>
+                   have a suggestion for an activity. <br> <br>
                    Please fill out your information below, and we'll get back to you as soon as possible!
                </p>
            </div>
+           <hr>
+           <br>
            <div class="about">
-            <form class="login-form" action="" method="POST">
+            <form class="about-form" action="" method="POST">
                 <div class="form-control">
                     <label for="fName">First Name</label>
                     <input class="" type="text" name="fName" id="fName" value="<%= oldInput.fName %>">

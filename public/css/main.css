@@ -210,18 +210,18 @@ padding-left: -10px;
   justify-content:space-evenly;
 }
 
-/* .main-header__nav ul sub{
+.main-header__nav ul sub{
   position: absolute;
   left: 0;
   display: none;
   margin: 0 0 0 -1px;
   padding: 0;
   list-style: none;
-} */
+} 
 
 
 
-.main-header__item-list {
+ .main-header__item-list {
   list-style: none;
   margin: 0;
   padding: 0 1rem;
@@ -252,8 +252,8 @@ padding-left: -10px;
   color: white;
   background-color: #1c78a3;
   
-}
-
+} 
+/*
 .mobile-nav {
   width: 30rem;
   height: 100vh;
@@ -331,6 +331,106 @@ padding-left: -10px;
 #side-menu-toggle:hover {
   color: white;
   background-color: #1c78a3;
+} */
+
+/*drop down mobile menu */
+
+.dropdown{
+  display: none;
+}
+/*admin dropdown*/
+.admin_dropdown{
+  float:left;
+  overflow:hidden;
+}
+
+.admin_dropdown, .admin_btn{
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: grey;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.admin_dropdown-content a:hover, .admin_dropdown:hover .admin_btn {
+  background-color: #1c78a3;
+  color:white;
+}
+
+.admin_dropdown-content{
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.admin_dropdown-content a{
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+.admin_dropdown-content a{
+  background-color: #ddd;
+}
+
+
+.admin_dropdown:hover .admin_dropdown-content{
+  display: block;
+}
+
+/* Dropdown Button */
+@media screen and (max-width: 700px) {
+  .dropbtn {
+    margin-bottom:30px;
+    background-color: #1c78a3;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+  }
+  
+  /* The container <div> - needed to position the dropdown content */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  /* Links inside the dropdown */
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  /* Change color of dropdown links on hover */
+  .dropdown-content a:hover {background-color: #ddd;}
+  
+  /* Show the dropdown menu on hover */
+  .dropdown:hover .dropdown-content {display: block;}
+  
+  /* Change the background color of the dropdown button when the dropdown content is shown */
+  .dropdown:hover .dropbtn {background-color: #1c78a3;}
+  /*end mobile nav*/
+  
 }
 
 
@@ -453,13 +553,30 @@ padding-left: -10px;
 }
 
 .contactUs{
+  display:flex;
+  justify-content: space-evenly;
   background-color: rgba(28, 120, 163, 0.6);
   border:transparent;
   border-radius: 2px;
   padding: .5rem;
   text-align: center;
+  font-size:.05em;
 }
-
+.foot_nav_item{
+  color:#ffffff;
+  text-decoration: none;
+  font-size: .05em;
+}
+.contactUs{
+ margin-top: 20px;
+}
+.aboutUs{
+  margin: auto;
+  padding-bottom: 50px;
+}
+hr{
+ border-top:1px solid black;
+}
 
 @media (min-width: 768px) {
   .main-header__nav {
@@ -518,6 +635,9 @@ img {vertical-align: middle;}
 /* On hover, add a black background color with a little bit see-through */
 .prev:hover, .next:hover {
   background-color: rgba(0,0,0,0.8);
+}
+.contactUs,.foot_nav_item{
+  font-size:1em;
 }
 
 }

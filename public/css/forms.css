@@ -26,3 +26,17 @@
 .form-control textarea.invalid {
   border-color: red;
 }
+form.about-form{
+  display: block;
+  margin: auto;
+  padding: 15px 20px;
+  border:1px solid;
+}
+
+@media (min-width: 768px){
+  form.about-form{
+  
+    width: 54%;
+ 
+  }
+}
