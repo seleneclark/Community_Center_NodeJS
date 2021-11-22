@@ -14,7 +14,7 @@ const User = require('./models/user');
 const PORT = process.env.PORT || 5000;
 
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb+srv://general_user:KRhLEaeelr0uqt5v@cse341.kzoh1.mongodb.net/shop?retryWrites=true&w=majority";
-const HEROKU_REPO = process.env.HEROKU_REPO;
+const HEROKU = process.env.HEROKU;
 
 // console.log(process.env);
 const app = express();
@@ -83,7 +83,7 @@ app.use(authRoutes);
 
 //heroku setup
 const corsOptions = {
-    origin: HEROKU_REPO,
+    origin: HEROKU,
     optionsSuccessStatus: 200
 };
 

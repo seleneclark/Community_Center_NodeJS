@@ -41,7 +41,7 @@ exports.postAddProduct = (req, res, next) => {
         price: price,
         description: description
         },
-     errorMessage: errors.array()[0].msg,
+      errorMessage: errors.array()[0].msg,
       validationErrors: errors.array()
     });
   }
@@ -158,7 +158,7 @@ exports.postEditProduct = (req, res, next) => {
 //start getProducts Middleware
 exports.getProducts = (req, res, next) => {
   //Product.find({ userId: req.user._id })
-  Product.find({})
+  Product.find({prodId: req._id})
     // .select('title price -_id')
     // .populate('userId', 'name')
     .then(products => {
@@ -180,7 +180,7 @@ exports.getProducts = (req, res, next) => {
 //start postDeleteProduct Middleware
 exports.postDeleteProduct = (req, res, next) => {
   const prodId = req.body.productId;
-  Product.deleteOne({ _id: prodId })
+  Product.deleteOne({ _id: prodId, userId: req.user._id })
     .then(() => {
       console.log('DESTROYED PRODUCT');
       res.redirect('/admin/products');

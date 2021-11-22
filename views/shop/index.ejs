@@ -4,6 +4,7 @@
 
 <body>
     <%- include('../includes/navigation.ejs') %>
+    <main>
     <section class="banner">
     <!-- Slideshow Container-->
     <div class="slideshow-container">
@@ -103,6 +104,9 @@
             <% } else { %>
             <h1>No Products Found!</h1>
             <% } %>
+            <div class="pagination">
+                <%- include('../includes/pagination.ejs', {currentPage: currentPage, nextPage: nextPage, previousPage: previousPage, lastPage: lastPage, hasNextPage: hasNextPage, hasPreviousPage: hasPreviousPage}) %>
+            </div>
         </section>
         <section class="section contactUs">
             <div class="heading contactHead">
