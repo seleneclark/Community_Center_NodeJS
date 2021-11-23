@@ -44,7 +44,7 @@ exports.getProducts = (req, res, next) => {
     .then(products => {
       res.render('shop/product-list', {
         prods: products,
-        pageTitle: 'Products',
+        pageTitle: 'Activities',
         path: '/products',
         currentPage: page,
         hasNextPage: ITEMS_PER_PAGE * page < totalItems,
@@ -116,7 +116,7 @@ exports.getIndex = (req, res, next) => {
     .then(products => {
       res.render('shop/index', {
         prods: products,
-        pageTitle: 'Shop',
+        pageTitle: 'Home',
         path: '/',
         currentPage: page,
         hasNextPage: ITEMS_PER_PAGE * page < totalItems,

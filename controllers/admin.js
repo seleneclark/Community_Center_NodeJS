@@ -83,7 +83,7 @@ exports.getEditProduct = (req, res, next) => {
         return res.redirect('/');
       }
       res.render('admin/edit-product', {
-        pageTitle: 'Edit Product',
+        pageTitle: 'Edit Activity',
         path: '/admin/edit-product',
         //should this be add-product?
         editing: editMode,
@@ -115,7 +115,7 @@ exports.postEditProduct = (req, res, next) => {
 
   if (!errors.isEmpty()) {
     return res.status(422).render('admin/edit-product', {
-      pageTitle: 'Edit Product',
+      pageTitle: 'Edit Activity',
       path: '/admin/edit-product',
       editing: true,
       hasError: true,
@@ -165,7 +165,7 @@ exports.getProducts = (req, res, next) => {
       //console.log(products);
       res.render('admin/products', {
         prods: products,
-        pageTitle: 'Admin Products',
+        pageTitle: 'Admin Activities',
         path: '/admin/products'
       });
     })
