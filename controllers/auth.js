@@ -1,14 +1,14 @@
 const crypto = require('crypto');
 const bcrypt = require('bcryptjs');
 const { validationResult } = require('express-validator');
-// const sgMail = require('@sendgrid/mail');
+const sgMail = require('@sendgrid/mail');
 require('dotenv').config();
 
 const User = require('../models/user');
 
-// const api_key = process.env.SG_API_KEY;
+sgMail.setApiKey(process.env.SG_API_KEY);
 
-// const SG_EMAIL = process.env.SG_EMAIL;
+const SG_EMAIL = process.env.SG_EMAIL;
 
 
 //start getLogin Middleware
@@ -159,15 +159,15 @@ exports.postSignup = (req, res, next) => {
     })
     .then(result => {
       res.redirect('/login');
-      // return sgMail
-      //   .send({
-      //   to: req.body.email,
-      //   from: SG_EMAIL,
-      //   subject: 'Signup Success',
-      //   html: `<p>Dear ${name}, <br>You successfully created an account. We hope you enjoy the community activities available to you.</p>
-      //   <br>
-      //   <p>Best Regards, <br> Eagle Community</p>`
-      // });
+      return sgMail
+        .send({
+        to: email,
+        from: SG_EMAIL,
+        subject: 'Signup Success',
+        html: `<p>Dear ${name}, <br>You successfully created an account. We hope you enjoy the community activities available to you.</p>
+        <br>
+        <p>Best Regards, <br> Eagle Community</p>`
+      });
     })
     .catch(err => {
       const error = new Error(err);
@@ -222,15 +222,15 @@ exports.postReset = (req, res, next) => {
       })
       .then(result => {
         res.redirect('/');
-        //  return sgMail
-        //   .send({
-        //     to: req.body.email,
-        //     from: SG_EMAIL,
-        //     subject: 'Password reset',
-        //     html: `<p>You requested a password reset</p>
-        //       <p>Click this <a href="http://localhost:5000/reset/${token}">link</a> to set a new password.</p>
-        //       <p>If this was not something you requested, contact client support</p>`
-        // });
+         return sgMail
+          .send({
+            to: req.body.email,
+            from: SG_EMAIL,
+            subject: 'Password reset',
+            html: `<p>You requested a password reset</p>
+              <p>Click this <a href="http://localhost:5000/reset/${token}">link</a> to set a new password.</p>
+              <p>If this was not something you requested, contact client support</p>`
+        });
       })
       .catch(err => {
         const error = new Error(err);
