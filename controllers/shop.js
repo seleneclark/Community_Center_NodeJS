@@ -1,4 +1,4 @@
-// const sgMail = require('@sendgrid/mail');
+const sgMail = require('@sendgrid/mail');
 const Product = require('../models/product');
 const Order = require('../models/order');
 const User = require('../models/user');
@@ -6,29 +6,10 @@ require('dotenv').config();
 
 const ITEMS_PER_PAGE = 3;
 
-// const SG_EMAIL = process.env.SG_EMAIL;
+sgMail.setApiKey(process.env.SG_API_KEY);
+const SG_EMAIL = process.env.SG_EMAIL;
  
- 
-//start getProducts Middleware
-// exports.getProducts = (req, res, next) => {
-//   Product.find()
-//     .then(products => {
-//       console.log(products);
-//       res.render('shop/product-list', {
-//         prods: products,
-//         pageTitle: 'All Products',
-//         path: '/products'
-//       });
-//     })
-//     .catch(err => {
-//       console.log(err);
-//       const error = new Error(err);
-    
-//       error.httpStatusCode = 500;
-//       return next(error);
-//   });
-// };//end getProducts Middleware
- 
+  
 exports.getProducts = (req, res, next) => {
   const page = +req.query.page || 1;
   let totalItems;
@@ -83,23 +64,6 @@ exports.getProduct = (req, res, next) => {
  
  
 //Start getIndex Middleware
-
-// exports.getIndex = (req, res, next) => {
-//   Product.find()
-//     .then(products => {
-//       res.render('shop/index', {
-//         prods: products,
-//         pageTitle: 'Shop',
-//         path: '/'
-//       });
-//     })
-//     .catch(err => {
-//       const error = new Error(err);
-//       error.httpStatusCode = 500;
-//       return next(error);
-//     });
-// }; 
-
 //with pagination
 exports.getIndex = (req, res, next) => {
   const page = +req.query.page || 1;
@@ -220,33 +184,7 @@ exports.postCartDeleteProduct = (req, res, next) => {
     });
 };//End postCartDeleteProduct middleware
  
- 
-//start getCheckout middleware
-// exports.getCheckout = (req, res, next) => {
-//   req.user
-//     .populate('cart.items.productId')
-//     .then(user => {
-//       const products = user.cart.items;
-//       let total = 0;
-//       products.forEach(p => {
-//         total += p.quantity * p.productId.price;
-//       })
-//       res.render('shop/checkout', {
-//         path: '/checkout',
-//         pageTitle: 'Checkout',
-//         products: products,
-//         totalSum: total
-//       });
-//     })
-//    .catch(err => {
-//       const error = new Error(err);
-//       error.httpStatusCode = 500;
-//       return next(error);
-//     //  console.log(err);
-//     });
-// }; //End getCheckout middleware
- 
- 
+
 //Start postOrder Middleware
 exports.postOrder = (req, res, next) => {
   req.user
@@ -267,18 +205,22 @@ exports.postOrder = (req, res, next) => {
     .then(result => {
       return req.user.clearCart();
     })
-    .then(() => {
+    .then(result => {
       res.redirect('/orders');
+
+      //This code creates this error: Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+      //at new NodeError (node:internal/errors:371:5)
+
+      //  return sgMail
+      //   .send({
+      //     to: email,
+      //     from: SG_EMAIL,
+      //     subject: 'Order Success',
+      //     html: `<p>You have successfully placed an order for ' + ${products} + '. We hope you enjoy the scheduled activity.</p>
+      //     <br>
+      //     <p>Best Regards, <br> Eagle Community</p>`
+      // });
     })
-    // .then(() => {
-    //    return sgMail
-    //       .send({
-    //         to: req.body.email,
-    //         from: SG_EMAIL,
-    //         subject: 'Order',
-    //     html: `<p>Dear ' + ${req.user.name}, <br>You order was successfully placed. We hope you enjoy your books.</p>`
-    //   });
-    // })
     .catch(err => {
       const error = new Error(err);
       error.httpStatusCode = 500;
@@ -286,7 +228,8 @@ exports.postOrder = (req, res, next) => {
     });
 }; //End postOrder middleware
  
- //Start getOrders middleware
+
+//Start getOrders middleware
 exports.getOrders = (req, res, next) => {
   Order.find({ 'user.userId': req.user._id })
     .then(orders => {
