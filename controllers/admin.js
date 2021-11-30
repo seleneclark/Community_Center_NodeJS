@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 const { validationResult } = require('express-validator');
 const Product = require('../models/product');
-
+// get users so we can delete a product from all user carts if that product is deleted from database
+const User = require('../models/user')
 
 //startgetAddProduct Middleware
 exports.getAddProduct = (req, res, next) => {
@@ -180,6 +181,38 @@ exports.getProducts = (req, res, next) => {
 //start postDeleteProduct Middleware
 exports.postDeleteProduct = (req, res, next) => {
   const prodId = req.body.productId;
+
+  // get all users from database to loop through each user to check if deleted product exists 
+  // in that user's cart, and remove it (the cart breaks if it tries to call a deleted product) 
+  // all users
+  User.find()
+    .then(users => {
+      // loop through each individual user
+      users.forEach(user => {
+      const name = user.name;
+      const email = user.email;
+      const password = user.password;
+      const cart = user.cart;
+        // go through each user's cart and check to see if deleted product exists in their cart
+        for (let i = 0; i < cart.items.length; i++) {
+          if (cart.items[i].productId == prodId) {
+            // if deleted product does exist in their cart, then use splice to remove the deleted product
+            cart.items.splice(i, 1);
+        }
+      }
+      // find user to update information
+        User.findById(user._id)
+        // update values, the only change is the cart will no longer contain deleted product
+        .then(user => {
+          user.name = name;
+          user.email = email;
+          user.password = password;
+          user.cart = cart;
+          return user.save()
+      })
+      })
+      });
+
   Product.deleteOne({ _id: prodId, userId: req.user._id })
     .then(() => {
       console.log('DESTROYED PRODUCT');

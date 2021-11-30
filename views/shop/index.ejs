@@ -74,15 +74,50 @@
             <% if (prods.length > 0) { %>
             <div class="grid">
                 <% for (let product of prods) { %>
+                    
+                    <% var time = product.time; // your input
+
+                    time = time.split(':'); // convert to array
+                    
+                    // fetch
+                    var hours = Number(time[0]);
+                    var minutes = Number(time[1]);
+                    
+                    // calculate
+                    var timeValue;
+                    
+                    if (hours > 0 && hours <= 12) {
+                      timeValue= "" + hours;
+                    } else if (hours > 12) {
+                      timeValue= "" + (hours - 12);
+                    } else if (hours == 0) {
+                      timeValue= "12";
+                    }
+                     
+                    timeValue += (minutes < 10) ? ":0" + minutes : ":" + minutes;  // get minutes
+                    timeValue += (hours >= 12) ? " P.M." : " A.M.";  // get AM/PM
+                     
+        
+                    var options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+                    var today  = new Date(product.date);
+        
+                    <!-- // console.log(today.toLocaleDateString("en-US")); // 9/17/2016
+                        // console.log(today.toLocaleDateString("en-US", options)); // Saturday, September 17, 2016 -->
+           
+        
+                    var formattedDate = today.toLocaleDateString("en-US", options);
+                    %>
+
+
                 <article class="card product-item centered">
                     <header class="card__header">
                         <h1 class="product__title"><%= product.title %></h1>
                     </header>
                     <div class="card__content">
-                        <p class="product__date">Date: <%= product.date %></p>
+                        <p class="product__date">Date: <%= formattedDate %></p>
                     </div>
                     <div class="card__content">
-                        <p class="product__time">Time: <%= product.time %></p>
+                        <p class="product__time">Time: <%= timeValue %></p>
                     </div>
                     <div class="card__image card__image-box">
                         <img class="product__image" src="<%= product.imageUrl %>" alt="<%= product.title %>">
