@@ -146,7 +146,8 @@ exports.getCart = (req, res, next) => {
         return total;
       })
 
-      // console.log(products[3].productId)
+
+    // console.log(products[3].productId)
       sortedArray = []
     //   productArray = []
      products.forEach(order => { 

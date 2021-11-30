@@ -1,0 +1,9 @@
+To test, add your mongo database key AND heroku account info within the quotes
+
+MONGO_URI = ""
+
+HEROKU = ""
+
+SG_EMAIL = 
+
+SG_API_KEY =
