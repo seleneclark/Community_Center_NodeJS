@@ -23,3 +23,25 @@
   margin: 0;
 }
 
+.cart__item h2{
+  text-align:center;
+}
+
+.cart__item div{
+  margin:20px;
+  padding:10px;
+}
+
+@media screen and (max-width: 700px){
+  .cart__item{
+    display:block;
+  }
+
+  .cart__item h1{
+    text-align: center;
+  }
+
+  .btn.danger{
+    margin-left: 84px;
+  }
+}
