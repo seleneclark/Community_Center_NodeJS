@@ -50,8 +50,13 @@
             </div>
             <h2>$<%= product.price %></h2>
             <p class="product__detail-description centered"><%= product.description %></p>
+            <p> To Sign up for this Activity<br>
+              <a href='/login'>  Please Sign In</a> | Or <a href='/signup'> Create an Account</a></p>
             <%- include('../includes/add-to-cart.ejs') %>
             </div>
+           
         </div>
+      
+
     </main>
     <%- include('../includes/end.ejs') %>
