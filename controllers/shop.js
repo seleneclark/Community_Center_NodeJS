@@ -207,19 +207,6 @@ exports.postOrder = (req, res, next) => {
     })
     .then(result => {
       res.redirect('/orders');
-
-      //This code creates this error: Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
-      //at new NodeError (node:internal/errors:371:5)
-
-      //  return sgMail
-      //   .send({
-      //     to: email,
-      //     from: SG_EMAIL,
-      //     subject: 'Order Success',
-      //     html: `<p>You have successfully placed an order for ' + ${products} + '. We hope you enjoy the scheduled activity.</p>
-      //     <br>
-      //     <p>Best Regards, <br> Eagle Community</p>`
-      // });
     })
     .catch(err => {
       const error = new Error(err);
