@@ -221,7 +221,7 @@ exports.getOrders = (req, res, next) => {
 
       res.render('shop/orders', {
         path: '/orders',
-        pageTitle: 'Your Orders',
+        pageTitle: 'Enrolled',
         orders: orders,
         sortedActivities : productArray
       });
@@ -267,7 +267,7 @@ exports.getAllOrders = (req, res, next) => {
  
       res.render('shop/all-orders', {
         path: '/all-orders',
-        pageTitle: 'Your Orders',
+        pageTitle: 'Enrolled',
         orders: orders,
         singleActivities: singleActivities,
         totalSignUps: occurrences
