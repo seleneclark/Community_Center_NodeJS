@@ -3,6 +3,8 @@ const { validationResult } = require('express-validator');
 const Product = require('../models/product');
 // get users so we can delete a product from all user carts if that product is deleted from database
 const User = require('../models/user')
+// get orders so we can delete a product from all orders if that product is deleted from database
+const Order = require('../models/order')
 
 //startgetAddProduct Middleware
 exports.getAddProduct = (req, res, next) => {
@@ -187,6 +189,33 @@ exports.getProducts = (req, res, next) => {
 //start postDeleteProduct Middleware
 exports.postDeleteProduct = (req, res, next) => {
   const prodId = req.body.productId;
+
+  // get all orders from database so we can loop through them and remove the deleted product from all orders
+  Order.find()
+  .then(orders => {
+      // loop through each individual order
+      orders.forEach(order => {
+        const products = order.products;
+        const user = order.user;
+          // go through each order and check to see if deleted product exists in the order
+          for (let i = 0; i < products.length; i++) {
+            var deletedProductId = String(prodId);
+            var currentProductId = String(products[i].product._id);
+            if (currentProductId == deletedProductId) {
+              // if deleted product does exist in the order then use splice to remove the deleted product
+              products.splice(i, 1);
+          }
+        }
+        // find order to update information
+          Order.findById(order._id)
+          // update values, the only change is the order will no longer contain deleted product
+          .then(order => {
+            order.products = products;
+            order.user = user;
+            return order.save()
+        })
+        })
+        });
 
   // get all users from database to loop through each user to check if deleted product exists 
   // in that user's cart, and remove it (the cart breaks if it tries to call a deleted product) 
