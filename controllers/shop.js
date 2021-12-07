@@ -109,30 +109,16 @@ exports.getCart = (req, res, next) => {
         console.log(total);
         return total;
       })
-
-
-    // console.log(products[3].productId)
       sortedArray = []
-    //   productArray = []
      products.forEach(order => { 
       sortedArray.push(order.productId)
         });
-        // productArray = productsBigArray1.flat();
-
-              // console.log(productArray.date)
-
-        // productArray.forEach(p => {
-        //   // console.log(p.product.date);
-        //   console.log(p.date);
-        // })
-        // var array = [{id: 1, date: '2021-11-12'}, {id: 2, date: '2021-11-2'}];
-
+        // sort so that soonest event is first
         sortedArray.sort(function(a,b){
           var c = new Date(a.date);
           var d = new Date(b.date);
           return c-d;
           });
-          // console.log(productArray)
 
       res.render('shop/cart', {
         path: '/cart',
@@ -168,7 +154,7 @@ exports.postCart = (req, res, next) => {
     });
 }; //End postCart middleware
  
- 
+
 //Start postCartDeleteProduct middleware
 exports.postCartDeleteProduct = (req, res, next) => {
   const prodId = req.body.productId;
@@ -226,33 +212,13 @@ exports.getOrders = (req, res, next) => {
             productsBigArray.push(order.products)
           });
           productArray = productsBigArray.flat();
-          // productArray.forEach(p => {
-          //   // console.log(p.product.date);
-          //   // console.log(p);
-          // })
-          // var array = [{id: 1, date: '2021-11-12'}, {id: 2, date: '2021-11-2'}];
-
+          // sort based on date so newest is first
           productArray.sort(function(a,b){
             var c = new Date(a.product.date);
             var d = new Date(b.product.date);
             return c-d;
             });
 
-          // console.log(productArray)
-          
-          //productsMedArray.push(productsBigArray[0])
-          //console.log(productsBigArray[0])
-          //console.log(productsBigArray[0][0].product.date)    
-          // productsArray.push(order.products)
-          //for (let i = 0; i < productsArray.length; i++) {
-            //for (let n = 0; n < productsArray[i].length; i++) {
-              //single.push(productsArray[i][n])
-              //}
-            //}                  
-          //order.products.forEach(p => {         
-            //}); 
-          //});
-          // console.log(single)
       res.render('shop/orders', {
         path: '/orders',
         pageTitle: 'Your Orders',
@@ -271,24 +237,11 @@ exports.getOrders = (req, res, next) => {
 exports.getAllOrders = (req, res, next) => {
   Order.find()
     .then(orders => {
-      // const orderss = orders.products
- 
       // create a list of all the activities that people are signed up for
       products = [];
       activities = []
       singleActivities = []
       orders.forEach(o => {
-      // products.push(o.products)
-      // })
-      // products.forEach(p => {
-      //   p.forEach(smallest => {
-      //     activities.push(smallest.product.title)
-      //     if (String((singleActivities.includes (smallest.product.title))) === 'false') {
-      //       singleActivities.push(smallest.product.title)
-      //     }
-      //   })
-      // })
-
       products.push(o.products)
       })
       products.forEach(p => {

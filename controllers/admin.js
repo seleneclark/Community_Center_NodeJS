@@ -163,7 +163,13 @@ exports.getProducts = (req, res, next) => {
     // .select('title price -_id')
     // .populate('userId', 'name')
     .then(products => {
-      //console.log(products);
+      // sort so that oldest events are at top
+        products.sort(function(a,b){
+          var c = new Date(a.date);
+          var d = new Date(b.date);
+          return c-d;
+          });
+
       res.render('admin/products', {
         prods: products,
         pageTitle: 'Admin Activities',
