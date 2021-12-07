@@ -5,7 +5,7 @@
 <body>
     <%- include('../includes/navigation.ejs') %>
     <main>
-        <h1>Purchased Activities:</h1>
+        <h1>Enrolled:</h1>
         <%if (orders.length <= 0) { %>
         <h1>Nothing there!</h1>
         <% } else { 
@@ -50,18 +50,6 @@
                         <% }); %>
                     </ul>
             </ul>
-
- <!--Original Code that uses 'orders' and isn't sorted by date
-             <ul class="orders">
-                <% orders.forEach(order => { 
-                    productsArray.push(order.products)%>
-                    <ul class="orders__products">
-                        <% order.products.forEach(p => { %>
-                        <li class="orders__item"><h1><%= p.product.title%></h1> Time:  <%=p.product.time%> <br> Date: <%=p.product.date %> </li>
-                        <% }); %>
-                    </ul>
-                <% });%>
-            </ul> -->
         <% }  %>
 
     </main>
