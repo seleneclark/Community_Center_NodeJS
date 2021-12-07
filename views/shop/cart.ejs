@@ -35,12 +35,11 @@
                  
 
                 var options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
-                var today  = new Date(p.date);
-
-            <!-- // console.log(today.toLocaleDateString("en-US")); // 9/17/2016
-                // console.log(today.toLocaleDateString("en-US", options)); // Saturday, September 17, 2016 -->
-   
-                var formattedDate = today.toLocaleDateString("en-US", options);
+                // create a new date, first value is year, second value is month, third value is day
+                // The month subtracts 1 because Date() views months 0-11 with 0 = January, the database is 1-12 with 1 = January
+                var eventDate = new Date(p.date.substring(0, 4), (Number(p.date.substring(5, 7)) - 1), p.date.slice(-2));
+                // format the date so that it shows the day of the week, written month, and year
+                var formattedDate = eventDate.toLocaleDateString("en-US", options);
                 %>
 
                 <div><h2>Price: <p>$<%= p.price %></p> </h2></div>

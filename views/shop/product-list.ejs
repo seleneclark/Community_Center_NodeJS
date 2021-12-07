@@ -37,14 +37,12 @@
                 timeValue += (minutes < 10) ? ":0" + minutes : ":" + minutes;  // get minutes
                 timeValue += (hours >= 12) ? " P.M." : " A.M.";  // get AM/PM
                  
-    
                 var options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
-                var today  = new Date(product.date);
-    
-                <!-- // console.log(today.toLocaleDateString("en-US")); // 9/17/2016
-                    // console.log(today.toLocaleDateString("en-US", options)); // Saturday, September 17, 2016 -->
-      
-                var formattedDate = today.toLocaleDateString("en-US", options);
+                // create a new date, first value is year, second value is month, third value is day
+                // The month subtracts 1 because Date() views months 0-11 with 0 = January, the database is 1-12 with 1 = January
+                var eventDate = new Date(product.date.substring(0, 4), (Number(product.date.substring(5, 7)) - 1), product.date.slice(-2));
+                // format the date so that it shows the day of the week, written month, and year
+                var formattedDate = eventDate.toLocaleDateString("en-US", options);
                 %>
                 <div class="card__content">
                     <p class="product__date">Date: <%= formattedDate %></p>
