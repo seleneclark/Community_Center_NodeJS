@@ -4,6 +4,11 @@ A Community Center website created for my Web Backend Development class with a s
 Using Express framework for dynamic routing and middleware in NodeJS.<br>
 MongoDB provides the database platofrm.<br>
 CORS and CRSF and route protection.<br>
-EJS is the templating engine for responsive web pages.<br>
+EJS is the templating engine for responsive web pages.<br><br>
+
+Check it out live at https://stormy-hamlet-18424.herokuapp.com/ <br><br>
+Login with sample@user.com and password <br>
+Or as an admin with admin@admin.com and password
+
 See screenshot below. <br>
 ![Screen Shot 2022-01-02 at 9 20 23 PM](https://user-images.githubusercontent.com/50272834/147899478-4cfa8d08-41ee-4f42-882b-b83a5c47f134.png)
